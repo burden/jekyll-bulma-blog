@@ -1,16 +1,6 @@
 ---
 layout: home
 ---
-
-## Features
-
-- bulma 0.7.1
-- jquery 3.2.1
-- Google Analytics
-- jekyll-assets
-- compress.html
-- html-proofer
-
 ## Dependencies
 
 1. Install bundler `gem install bundler`

@@ -19,7 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   A nifty boilerplate for Jekyll made magnificent with the help of Bulma.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-
+analytics-id: 
 # Social settings
 github: burden/jekyll-bulma-boilerplate
 maintainers:

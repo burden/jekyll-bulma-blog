@@ -4,11 +4,18 @@
 html {
   body {
     @include font-smoothing(on);
-  }
-  .burger {
-    color: $grey-dark;
-  }
-  .navbar-item{
-    font-size: 1em;
+    
+    .burger {
+      color: $grey-dark;
+    }
+    .navbar-item{
+      font-size: 1em;
+    }
+    .column {
+      margin: 1rem 0;
+      .icon {
+        margin-bottom: 1rem;
+      }
+    }
   }
 }

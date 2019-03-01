@@ -10,11 +10,10 @@ addons:
     packages:
     - libcurl4-openssl-dev # https://github.com/typhoeus/typhoeus/issues/568
 before_script:
-  - npm install -g bower
-  - bower install
+  - yarn install
 script:
   - bundle exec jekyll build
-  - bundle exec htmlproofer ./www
+  - bundle exec htmlproofer ./www --url-ignore "/burden.cc/"
 deploy:
   provider: pages # https://docs.travis-ci.com/user/deployment/pages/
   skip-cleanup: true

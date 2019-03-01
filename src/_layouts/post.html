@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<section class="section section-normalize section-blog-post">
+  <div class="container">
+    <article class="post">
+      <header class="header has-text-centered">
+        {% if page.tags.size > 0  %}
+        <div class="tags is-centered">
+          {% for tag in page.tags %} <a href="/tag/{{ tag }}"><span class="tag is-size-7 is-link has-text-weight-bold">{{ tag }}</span></a> {% endfor %}
+        </div>
+        {% endif %}
+        <h1 class="title is-1 has-text-weight-semibold">{{ page.title }}</h1>
+        {% assign words = content | number_of_words %} 
+        {% assign mins = words | divided_by:180 %}
+        {%- include function-getCategory.html name=page.categories.first -%}
+        <p class="subtitle is-6">
+          <a href="/{{ page.date | date: "%Y" }}/">{{ page.date | date: "%b %d, %Y" }}</a>
+          {% if category.size %}in <a href="/{{ category.name }}/">{{ category.caption }}</a>{%endif%} 
+          {% if mins > 1 %} &middot; {{ mins }} min read{% endif %}
+        </p>
+      </header>
+      <div class="content has-text-weight-normal">{{ content }}</div>
+      {% include section-prev-next.html %}
+    </article>
+  </div>
+</section>

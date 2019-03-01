@@ -4,8 +4,50 @@
       <p class="is-size-4">
         {% include function.maintainers.html %}
       </p>
-      <p class="is-size-6"><span class="has-text-weight-bold">Support</span> {{ site.title }}</p>
-      <p><span class="has-text-weight-bold is-size-7">Visit our sponsor</span><br><a target="_blank" href="https://utensils.io" class="button is-inverted is-primary has-text-weight-bold is-medium">utensils.io</a></p>
+    </div>
+    <div class="columns">
+      <div class="column is-7">
+        <div class="content has-text-centered">
+          <blockquote cite="https://github.com/{{ site.github }}">
+            {{ site.description }}
+          </blockquote>
+          <p><span class="has-text-weight-bold">Contact:</span> <a href="" class="has-secret-email"></a></p>
+          <p class="is-size-6"><span class="has-text-weight-bold">Support</span> {{ site.title }}</p>
+          <p><span class="has-text-weight-bold is-size-7">Visit our sponsor</span><br><a target="_blank" href="https://utensils.io" class="button is-inverted is-primary has-text-weight-bold is-medium">utensils.io</a></p>
+        </div>
+      </div>
+      <div class="column is-3 has-text-centered-mobile">
+        <p class="title is-6">Latest Articles</p>
+        <ul class="is-underlined">
+        {%- for article in site.posts limit: 5 -%} 
+          {% if article.title == page.title %}{% continue %}{% endif %}
+          <li>
+            <a class="is-size-6" href="{{ article.url }}">{{ article.title }}</a>
+          </li>
+        {%- endfor -%}
+        </ul>
+      </div>
+      <div class="column is-2 has-text-centered-mobile">
+        {%- capture active -%}
+          {% if page.url == "/" %} class="is-active"{% endif %}
+        {%- endcapture -%}
+        <p class="title is-6"><a href="/"{{ active }}>Home</a></p>
+        <p class="title is-6">Categories</p>
+        <ul class="is-underlined">
+        {% for topic in site.categories %}
+          {%- include function-getCategory.html name=topic.first -%}
+          {%- capture active -%}
+            {%- if page.title == category.name -%} is-active{%- endif -%}
+            {%- if page.categories.first == category.name -%} is-active{%- endif -%}
+          {%- endcapture -%}
+          <li><a{% if active %} class="{{ active }}"{% endif %} href="/{{ category.name }}">{{ category.caption }}</a></li>
+          {% endfor %}
+        </ul>
+        {%- capture active -%}
+          {% if page.url == "/contact/" %} class="is-active"{% endif %}
+        {%- endcapture -%}
+        <p class="title is-6"><a href="/contact/"{{ active }}>Contact</a></p>
+      </div>
     </div>
   </div>
 </footer>

@@ -1,0 +1,18 @@
+categories:
+  - name: category1
+    caption: Category One
+    description: Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit.
+  - name: category2
+    caption: Category Two
+    description: Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
+  - name: category3
+    caption: Category Three
+    description: Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.
+  - name: category4
+    caption: Category Four
+    description: Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum.
+tags:
+  - name: tag1
+    description: Donec urna ex, lacinia in purus ac, pretium pulvinar mauris.
+  - name: tag2
+    description: Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat.

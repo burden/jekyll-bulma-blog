@@ -16,14 +16,16 @@ layout: compress
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ site.title }}</title>
+    <meta name="contact" data-encoded="{{site.email-encoded}}" data-key="{{site.email-key}}">
+    {% seo %}
     {% asset style.css %}
     <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+    {% feed_meta %}
   </head>
   <body>
-    {% include _nav.html %}
+    {%- include _nav.html -%}
     {{ content }}
     {% asset main.js %}
-    {% include _footer.html %}
+    {%- include _footer.html -%}
   </body>
 </html>

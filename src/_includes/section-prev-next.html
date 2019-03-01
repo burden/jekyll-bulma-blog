@@ -1,0 +1,23 @@
+<section class="section section-normalize">
+  <div class="columns is-mobile prev-next">
+    <div class="column is-6">
+      {% if page.previous %}
+        <h2 class="title is-7 has-text-grey-light">Previous article</h2>
+        <p class="has-text-weight-semibold"><a href="{{ page.previous.url }}" title="{{ page.previous.title }}" rel="prev">&laquo; {{page.previous.title}}</a></p>
+      {% else %}
+        <h2 class="title is-7 has-text-grey-light">Current article</h2>
+        <p class="has-text-weight-semibold">{{page.title}}</p>
+      {% endif %}
+    </div>
+    <div class="column is-6 has-text-right">
+      {% if page.next %}
+        <h2 class="title is-7 has-text-grey-light">Next article</h2>
+        <p class="has-text-weight-semibold"><a href="{{ page.next.url }}" title="{{ page.next.title }}" rel="next">{{page.next.title}} &raquo;</a></p>
+      {% else %}
+        <h2 class="title is-7 has-text-grey-light">Current article</h2>
+        <p class="has-text-weight-semibold">{{page.title}}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+

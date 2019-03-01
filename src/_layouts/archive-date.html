@@ -1,0 +1,15 @@
+---
+layout: page
+---
+<header class="header">
+  <h1 class="title is-3">Posts in {{ page.date | date: "%Y" }}</h1>  
+</header>
+
+<ul class="posts">
+{% for post in page.posts %}
+  <li>
+    <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  </li>
+{% endfor %}
+</ul>

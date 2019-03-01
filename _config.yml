@@ -13,28 +13,37 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: jekyll-bulma-boilerplate
-email: burden@burden.cc
-description: >- # this means to ignore newlines until "baseurl:"
-  A nifty boilerplate for Jekyll made magnificent with the help of Bulma.
+title: jekyll-bulma-blog
+description: A fully-featured blog boilerplate for Jekyll made extraordinary with the help of Bulma.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://jekyll-bulma-blog.burden.cc" # the base hostname & protocol for your site, e.g. http://example.com
 analytics-id: 
+thanks: "/thanks/" # after form submitted, send visitor here
+email-key: 1nBbONFhyVzmU7rWSaquH6ICGTcQ0olKX5jk9Y2e8fsiLJPvAdE4RMpZDtw3gx
+email-encoded: JAHr9Jr@wq9lmdw.JAl
+
 # Social settings
-github: burden/jekyll-bulma-boilerplate
+github: burden/jekyll-bulma-blog
 maintainers:
   - burden
 
 # Build settings
 plugins:
-  - jekyll-assets
   - kramdown
   - uglifier
+  - jekyll-assets
+  - jekyll-archives
+  - jekyll-compose
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 source: src
 destination: www
 markdown: kramdown
-
+    
 compress_html:
   ignore:
     envs: ["development"]
@@ -59,6 +68,22 @@ assets:
     css: false
     js: uglifier
 
+paginate: 4
+paginate_path: /:num/
+permalink: /:categories/:title/
+
+jekyll-archives:
+  enabled: ['categories', 'tags', 'year']
+  layout: default
+  layouts:
+    year: archive-date
+    category: archive-catalog
+    tag: archive-catalog
+  permalinks:
+    year: '/:year/'
+    tag: '/tag/:name/'
+    category: '/:name/'
+    
 include:
   - CNAME
 # Exclude from processing.

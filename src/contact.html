@@ -1,0 +1,51 @@
+---
+layout: default
+title: contact
+---
+<section class="section">
+  <div class="container">
+    <div class="column is-6 is-offset-3">
+      <h1 class="title is-2">Contact</h1>
+      <form class="has-secret-action" action="https://formspree.io/" method="POST">
+        <input type="hidden" name="_next" value="{{ site.url | append: site.thanks }}" />
+        <div class="field">
+          <div class="control has-icons-left">
+            <input class="input" type="text" placeholder="Your name" name="name">
+            <span class="icon is-small is-left">
+              <i class="fas fa-signature fa-xs"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control has-icons-left">
+            <input class="input" type="email" placeholder="Your email" name="email">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope fa-xs"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control has-icons-left">
+            <input class="input" type="tel" placeholder="Your phone #">
+            <span class="icon is-small is-left">
+              <i class="fas fa-phone fa-xs"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <textarea class="textarea" type="text" placeholder="Your message goes here"></textarea>
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <p class="control">
+            <input class="button is-link" type="submit" value="Send">
+          </p>
+          <p class="control">
+            <input class="button" type="reset" value="Reset">
+          </p>
+        </div>
+      <form>
+    </div>
+  </div>
+</section>

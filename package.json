@@ -1,0 +1,11 @@
+{
+  "name": "jekyll-bulma-blog",
+  "version": "1.0.0",
+  "main": "",
+  "repository": "https://github.com/burden/jekyll-bulma-blog.git",
+  "author": "burden <burden@burden.cc>",
+  "license": "MIT",
+  "dependencies": {
+    "bulma": "^0.7.4"
+  }
+}

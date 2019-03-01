@@ -1,0 +1,30 @@
+---
+layout: default
+---
+{% if paginator.page == 1 %}
+<section class="hero is-info is-bold">
+  <div class="hero-body">
+    <div class="container">
+      {%- for post in site.posts -%}
+        {%- if post.featured -%}
+          {% assign featured = post %}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- unless featured -%}{% assign featured = site.posts.last %}{%- endunless -%}
+      <h1 class="title is-5">Featured</h1>
+      {%- include article-preview.html post=featured -%}
+    </div>
+  </div>
+</section>
+{% endif %}
+<section class="section section-blog-page">
+  <div class="container">
+    <h2 class="title is-5">{% if paginator.page == 1 %}Latest{% else %}Page {{ paginator.page }}{% endif %}</h2>
+    <div class="columns is-multiline">
+      {%- for post in paginator.posts -%}
+      <div class="column is-half">{% include article-preview.html post=post %}</div>
+      {%- endfor -%}
+    </div>
+    {% include nav-pagination.html %}
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+layout: page
+---
+<header class="header">
+{% if page.type == 'category' %}
+  {% for cat in site.data.catalog.categories %}
+    {% if cat.name == page.title %}
+      <h1 class="title is-3">{{ cat.caption }}</h1>
+      {% if cat.description %}    
+      <p class="subtitle is-5">{{ cat.description }}</p>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% if page.type == 'tag' %}
+  <h1 class="title is-3"><span class="tag is-size-3 is-link has-text-weight-bold">{{ page.title }}</span></h1>
+  {% for tag in site.data.catalog.tags %}
+    {% if tag.name == page.title %}
+      <p class="subtitle">{{ tag.description }}</p>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+</header>
+<ul class="posts">  
+  {% for post in page.posts %}
+    <li>
+      <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>

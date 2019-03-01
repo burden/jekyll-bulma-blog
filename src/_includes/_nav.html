@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar has-shadow is-spaced">
+<nav id="navbar" class="navbar is-transparent">
   <div class="container">
     <div class="navbar-brand">
       <a class="navbar-item" href="/"><span class="icon"><i class="fas fa-fw fa-adjust"></i></span>&nbsp;<h1 class="title is-5">{{ site.title }}</h1></a>
@@ -14,12 +14,16 @@
       <div class="navbar-start">
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link is-active">Categories</a>
-          <div id="moreDropdown" class="navbar-dropdown">
-            <a class="navbar-item" href="/"><span class="has-text-weight-bold">Page 1</span></a>
-            <a class="navbar-item" href="/"><span class="has-text-weight-bold">Page 2</span></a>
+          <div id="moreDropdown" class="navbar-dropdown is-boxed">
+            {%- for topic in site.categories -%}
+              {%- include function-getCategory.html name=topic.first -%}
+              {% capture active %}{% if page.title == category.name %} is-active{% endif %}{% if page.categories.first == category.name %} is-active{% endif %}{% endcapture %}
+              <a class="navbar-item{{ active }}" href="/{{ category.name }}">{{ category.caption }}</a>
+            {%- endfor -%}
           </div>
         </div>
-        <a class="navbar-item" href="/">About</a>
+        {% capture active %}{% if page.url == "/contact/" %} is-active{% endif %}{% endcapture %}
+        <a class="navbar-item{{ active }}" href="/contact/">Contact</a>
       </div>
       <div class="navbar-end">
         <a class="navbar-item is-hidden-mobile" href="https://github.com/{{ site.github }}" target="_blank"><span class="icon has-text-grey-darker"><i class="fab fa-lg fa-github"></i></span></a>

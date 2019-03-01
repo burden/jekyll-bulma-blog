@@ -1,0 +1,19 @@
+{% if paginator.total_pages > 1 %}
+<nav class="pagination is-right" role="navigation" aria-label="pagination">
+  <!-- please note that we're displaying in reverse chronological order, which makes the definition of "next" and "previous" backwards -->
+  <a {% if paginator.previous_page %}href="{{ paginator.previous_page_path }}"{% endif %} class="pagination-previous"{% unless paginator.previous_page %} disabled{% endunless %}>Previous</a>
+  <a {% if paginator.next_page %}href="{{ paginator.next_page_path }}"{% endif %} class="pagination-next"{% unless paginator.next_page %} disabled{% endunless %}>Next</a>
+  <ul class="pagination-list">
+  {% for page in (1..paginator.total_pages)%}
+    {%- capture page-url -%}
+    {%- if page == 1 -%}
+      {{ site.paginate_path | replace: ':num/', '' }}
+    {%- else -%}
+      {{ site.paginate_path | replace: ':num', page }}
+    {%- endif- %}
+    {%- endcapture -%}
+    <li><a href="{{ page-url }}" class="pagination-link{% if page == paginator.page %} is-current{% endif %}">{{ page }}</a></li>
+  {% endfor %}
+  </ul>
+</nav>
+{% endif %}

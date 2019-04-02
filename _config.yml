@@ -18,9 +18,16 @@ description: A fully-featured blog boilerplate for Jekyll made extraordinary wit
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://jekyll-bulma-blog.burden.cc" # the base hostname & protocol for your site, e.g. http://example.com
 analytics-id: 
-thanks: "/thanks/" # after form submitted, send visitor here
-email-key: 1nBbONFhyVzmU7rWSaquH6ICGTcQ0olKX5jk9Y2e8fsiLJPvAdE4RMpZDtw3gx
-email-encoded: JAHr9Jr@wq9lmdw.JAl
+
+contact:
+  email-plain: # put your email address here to disable obfuscation
+  email-key: 1nBbONFhyVzmU7rWSaquH6ICGTcQ0olKX5jk9Y2e8fsiLJPvAdE4RMpZDtw3gx
+  email-encoded: JAHr9Jr@wq9lmdw.JAl
+  page:
+    service: auto # options: auto, formspree
+    thanks: "/thanks/" # after form submitted, send visitor here
+    honeypot: true
+    recaptcha: true # note: has no effect on formspree.io free
 
 # Social settings
 github: burden/jekyll-bulma-blog
@@ -83,7 +90,55 @@ jekyll-archives:
     year: '/:year/'
     tag: '/tag/:name/'
     category: '/:name/'
-    
+
+prose:
+  siteurl: "https://jekyll-bulma-blog.burden.cc"
+  rooturl: 'src/_posts'
+  metadata:
+    src/_posts:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post"
+      - name: "title"
+        field:
+          element: "text"
+          label: "title"
+      - name: "category"
+        field:
+          element: "multiselect"
+          alterable: true
+          label: "Add Categories"
+          placeholder: "Choose categories"
+          options:
+            - name: "Category 1"
+              value: "category1"
+            - name: "Category 2"
+              value: "category2"
+            - name: "Category 3"
+              value: "category3"
+            - name: "Category 4"
+              value: "category4"
+      - name: "tag"
+        field:
+          element: "multiselect"
+          alterable: true
+          label: "Add Tags"
+          placeholder: "Choose tags"
+          options:
+            - name: "Tag 1"
+              value: "tag1"
+            - name: "Tag 2"
+              value: "tag2"
+      - name: "title"
+        field:
+          element: "text"
+          label: "title"
+      - name: "published"
+        field:
+          element: "checkbox"
+          label: "Published"
+          value: false
 include:
   - CNAME
 # Exclude from processing.

@@ -18,7 +18,7 @@
             {%- for topic in site.categories -%}
               {%- include function-getCategory.html name=topic.first -%}
               {% capture active %}{% if page.title == category.name %} is-active{% endif %}{% if page.categories.first == category.name %} is-active{% endif %}{% endcapture %}
-              <a class="navbar-item{{ active }}" href="/{{ category.name }}">{{ category.caption }}</a>
+              <a class="navbar-item{{ active }}" href="{{ site.jekyll-archives.permalinks.category | replace: ":name", category.name }}">{{ category.caption }}</a>
             {%- endfor -%}
           </div>
         </div>

@@ -6,19 +6,30 @@ title: contact
   <div class="container">
     <div class="column is-6 is-offset-3">
       <h1 class="title is-2">Contact</h1>
-      <form class="has-secret-action" action="https://formspree.io/" method="POST">
-        <input type="hidden" name="_next" value="{{ site.url | append: site.thanks }}" />
+      {% if jekyll.environment == "netlify" and site.contact.page.service == "auto" %}
+        <form name="contact"{% if site.contact.page.thanks %} action="{{ site.contact.page.thanks }}"{% endif %} method="POST"{% if site.contact.page.honeypot %} data-netlify-recaptcha="true"{% endif %}{% if site.contact.page.honeypot %} netlify-honeypot="lastname"{% endif %} netlify>
+      {% else %}
+        <form name="contact" {% unless site.contact.email-plain %} class="has-secret-action"{% endunless %} action="https://formspree.io/{% if site.contact.email-plain %}{{ site.contact.email-plain }}{% endif %}" method="POST">
+          {% if site.contact.page.thanks %}<input type="hidden" name="_next" value="{{ site.url | append: site.contact.page.thanks }}" />{% endif %}
+      {% endif %}
         <div class="field">
           <div class="control has-icons-left">
-            <input class="input" type="text" placeholder="Your name" name="name">
+            <input class="input" type="text" name="name" id="name" autocomplete="name" placeholder="Your name" title="Please enter your full name" required>
             <span class="icon is-small is-left">
               <i class="fas fa-signature fa-xs"></i>
             </span>
           </div>
         </div>
+        {% if site.contact.page.honeypot %}
+          {% if jekyll.environment == "netlify" and site.contact.page.service == "auto" %}
+          <input style="display: none" class="input" type="text" name="lastname" id="lastname">
+          {% else %}
+          <input style="display: none" class="input" type="text" name="_gotcha">
+          {% endif %}
+        {% endif %}
         <div class="field">
           <div class="control has-icons-left">
-            <input class="input" type="email" placeholder="Your email" name="email">
+            <input class="input" type="email" name="email" id="email" autocomplete="email" placeholder="Your email address" title="Please use a valid email address" pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$" required>
             <span class="icon is-small is-left">
               <i class="fas fa-envelope fa-xs"></i>
             </span>
@@ -26,7 +37,7 @@ title: contact
         </div>
         <div class="field">
           <div class="control has-icons-left">
-            <input class="input" type="tel" placeholder="Your phone #">
+            <input class="input" type="text" name="phone" id="phone" autocomplete="tel-national" placeholder="Contact number, optional">
             <span class="icon is-small is-left">
               <i class="fas fa-phone fa-xs"></i>
             </span>
@@ -34,18 +45,23 @@ title: contact
         </div>
         <div class="field">
           <div class="control">
-            <textarea class="textarea" type="text" placeholder="Your message goes here"></textarea>
+            <textarea class="textarea" name="message" id="message" placeholder="Write your message here" rows="7" required></textarea>
           </div>
         </div>
+        {% if site.contact.page.recaptcha %}
+          {% if jekyll.environment == "netlify" and site.contact.page.service == "auto" %}
+          <div data-netlify-recaptcha="true" class="field"></div>
+          {% endif %}
+        {% endif %}
         <div class="field is-grouped">
           <p class="control">
-            <input class="button is-link" type="submit" value="Send">
+            <input class="button is-link" type="submit" name="submit" value="Send">
           </p>
           <p class="control">
             <input class="button" type="reset" value="Reset">
           </p>
         </div>
-      <form>
+      </form>
     </div>
   </div>
 </section>

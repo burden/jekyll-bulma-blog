@@ -11,7 +11,14 @@
           <blockquote cite="https://github.com/{{ site.github }}">
             {{ site.description }}
           </blockquote>
-          <p><span class="has-text-weight-bold">Contact:</span> <a href="" class="has-secret-email"></a></p>
+          <p>
+            <span class="has-text-weight-bold">Contact:</span> 
+            {% if site.contact.email-plain %}
+            <a href="mailto:{{ site.contact.email-plain }}">{{ site.contact.email-plain }}</a>
+            {% else %}
+            <a href="" class="has-secret-email"></a>
+            {% endif %}
+          </p>
           <p class="is-size-6"><span class="has-text-weight-bold">Support</span> {{ site.title }}</p>
           <p><span class="has-text-weight-bold is-size-7">Visit our sponsor</span><br><a target="_blank" href="https://utensils.io" class="button is-inverted is-primary has-text-weight-bold is-medium">utensils.io</a></p>
         </div>
@@ -40,7 +47,7 @@
             {%- if page.title == category.name -%} is-active{%- endif -%}
             {%- if page.categories.first == category.name -%} is-active{%- endif -%}
           {%- endcapture -%}
-          <li><a{% if active %} class="{{ active }}"{% endif %} href="/{{ category.name }}">{{ category.caption }}</a></li>
+          <li><a{% if active %} class="{{ active }}"{% endif %} href="{{ site.jekyll-archives.permalinks.category | replace: ":name", category.name }}">{{ category.caption }}</a></li>
           {% endfor %}
         </ul>
         {%- capture active -%}

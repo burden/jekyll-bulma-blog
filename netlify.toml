@@ -1,0 +1,6 @@
+[build]
+  command = "bundle exec jekyll build"
+  publish = "./www"
+
+[build.environment]
+  JEKYLL_ENV = "netlify"

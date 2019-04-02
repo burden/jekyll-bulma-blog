@@ -7,7 +7,7 @@ layout: default
       <header class="header has-text-centered">
         {% if page.tags.size > 0  %}
         <div class="tags is-centered">
-          {% for tag in page.tags %} <a href="/tag/{{ tag }}"><span class="tag is-size-7 is-link has-text-weight-bold">{{ tag }}</span></a> {% endfor %}
+          {% for tag in page.tags %} <a href="{{ site.jekyll-archives.permalinks.tag | replace: ":name", tag }}"><span class="tag is-size-7 is-link has-text-weight-bold">{{ tag }}</span></a> {% endfor %}
         </div>
         {% endif %}
         <h1 class="title is-1 has-text-weight-semibold">{{ page.title }}</h1>

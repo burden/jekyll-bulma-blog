@@ -1,3 +1,16 @@
+navigation:
+  top:
+    - caption: Categories # note: no url
+      expand: true # see navbar-items.html:8
+    - caption: Contact
+      url: "/contact/"
+  footer:
+    - caption: Home
+      url: "/"
+    - caption: Categories
+      expand: true
+    - caption: Contact
+      url: "/contact/"
 categories:
   - name: category1
     caption: Category One

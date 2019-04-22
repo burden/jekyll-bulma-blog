@@ -6,7 +6,7 @@
       </p>
     </div>
     <div class="columns">
-      <div class="column is-7">
+      <div class="column is-6">
         <div class="content has-text-centered">
           <blockquote cite="https://github.com/{{ site.github }}">
             {{ site.description }}
@@ -34,26 +34,24 @@
         {%- endfor -%}
         </ul>
       </div>
-      <div class="column is-2 has-text-centered-mobile">
-        {%- capture active -%}
-          {% if page.url == "/" %} class="is-active"{% endif %}
-        {%- endcapture -%}
-        <p class="title is-6"><a href="/"{{ active }}>Home</a></p>
-        <p class="title is-6">Categories</p>
-        <ul class="is-underlined">
-        {% for topic in site.categories %}
-          {%- include function-getCategory.html name=topic.first -%}
-          {%- capture active -%}
-            {%- if page.title == category.name -%} is-active{%- endif -%}
-            {%- if page.categories.first == category.name -%} is-active{%- endif -%}
-          {%- endcapture -%}
-          <li><a{% if active %} class="{{ active }}"{% endif %} href="{{ site.jekyll-archives.permalinks.category | replace: ":name", category.name }}">{{ category.caption }}</a></li>
-          {% endfor %}
-        </ul>
-        {%- capture active -%}
-          {% if page.url == "/contact/" %} class="is-active"{% endif %}
-        {%- endcapture -%}
-        <p class="title is-6"><a href="/contact/"{{ active }}>Contact</a></p>
+      <div class="column is-2 is-offset-1 has-text-centered-mobile">
+
+      {% for footer in site.data.core.navigation.footer %}
+        {% capture active %}{% if page.url == footer.url %} is-active{% endif %}{% endcapture %}
+        <p class="title is-6">{%- unless footer.expand -%}<a href="{{ footer.url }}" class="{{active}}">{{ footer.caption }}</a>{%- else -%}{{ footer.caption }}{%- endunless -%}</p>
+        {%- if footer.expand -%}
+          {% assign expand = footer.caption | downcase %}
+          {%- if expand == "categories" -%}
+          <ul class="is-underlined">
+            {%- for topic in site.data.core.categories -%}
+              {% capture active %}{% if page.title == topic.name %} is-active{% endif %}{% if page.categories.first == topic.name %} is-active{% endif %}{% endcapture %}
+              <li><a class="{{active}}" href="{{ site.jekyll-archives.permalinks.category | replace: ":name", topic.name }}">{{ topic.caption }}</a></li>
+            {%- endfor -%}
+          </ul>
+          {%- endif -%}
+        {%- endif -%}
+      {% endfor %}
+
       </div>
     </div>
   </div>

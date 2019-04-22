@@ -12,18 +12,25 @@
     </div> <!-- /navbarbrand -->
     <div class="navbar-menu" id="navMain">
       <div class="navbar-start">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link is-active">Categories</a>
-          <div id="moreDropdown" class="navbar-dropdown is-boxed">
-            {%- for topic in site.categories -%}
-              {%- include function-getCategory.html name=topic.first -%}
-              {% capture active %}{% if page.title == category.name %} is-active{% endif %}{% if page.categories.first == category.name %} is-active{% endif %}{% endcapture %}
-              <a class="navbar-item{{ active }}" href="{{ site.jekyll-archives.permalinks.category | replace: ":name", category.name }}">{{ category.caption }}</a>
-            {%- endfor -%}
+      {%- for navigation in site.data.core.navigation.top -%}
+        {%- if navigation.expand -%}
+        {% assign expand = navigation.caption | downcase %}
+        <div class="navbar-item has-dropdown is-arrowless is-hoverable">
+          <a class="navbar-link">{{ navigation.caption }}</a>
+          <div class="navbar-dropdown is-boxed">
+            {%- if expand == "categories" -%}
+              {%- for topic in site.data.core.categories -%}
+                {% capture active %}{% if page.title == topic.name %} is-active{% endif %}{% if page.categories.first == topic.name %} is-active{% endif %}{% endcapture %}
+                <a class="navbar-item{{active}}" href="{{ site.jekyll-archives.permalinks.category | replace: ":name", topic.name }}">{{ topic.caption }}</a>
+              {%- endfor -%}
+            {%- endif -%}
           </div>
         </div>
-        {% capture active %}{% if page.url == "/contact/" %} is-active{% endif %}{% endcapture %}
-        <a class="navbar-item{{ active }}" href="/contact/">Contact</a>
+        {%- else -%}
+        {% capture active %}{% if page.url == navigation.url %} is-active{% endif %}{% endcapture %}
+        <a class="navbar-item{{active}}" href="{{navigation.url}}">{{navigation.caption}}</a>
+        {%- endif -%}
+      {%- endfor -%}
       </div>
       <div class="navbar-end">
         <a class="navbar-item is-hidden-mobile" href="https://github.com/{{ site.github }}" target="_blank"><span class="icon has-text-grey-darker"><i class="fab fa-lg fa-github"></i></span></a>

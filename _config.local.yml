@@ -1,0 +1,6 @@
+#url: ""
+host: 0.0.0.0 
+port: 4007
+assets:
+  compression: false
+  gzip: false

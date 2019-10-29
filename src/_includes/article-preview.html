@@ -4,12 +4,13 @@
       <a href="{{ include.post.url | relative_url }}">{{ include.post.title | escape }}</a>
     </h3>
     {%- assign topic = include.post.categories.first -%}
-    {%- include function.getCategory.html name=topic -%}
+    {%- include functions/getCategory name=topic -%}
     {%- assign words = include.post.content | number_of_words -%} 
     {%- assign mins = words | divided_by:180 -%}
+    {% assign post_date = include.post.date | date: "%Y" %}
     <p class="subtitle is-7">
-      <a href="/{{ include.post.date | date: "%Y" }}" class="has-text-weight-semibold">{{ include.post.date | date: "%b %-d, %Y" }}</a>
-      {% if topic %} in <a href="{{ site.jekyll-archives.permalinks.category | replace: ":name", topic }}" class="has-text-weight-semibold">{% if category %}{{ category.caption }}{% else %}{{ topic }}</a>{% endif %}{% endif %}
+      <a href="{{ site.jekyll-archives.permalinks.year | replace: ":year", post_date }}" class="has-text-weight-semibold">{{ include.post.date | date: "%b %-d, %Y" }}</a>
+      {% if topic %} in <a href="{{ site.jekyll-archives.permalinks.category | replace: ":name", category.name }}">{{ category.caption }}</a> {% endif %}
       {% if mins > 1 %} &middot; <em>{{ mins }} min read</em>{% endif %}
     </p>    
   </header>

@@ -13,7 +13,7 @@ layout: default
         <h1 class="title is-1 has-text-weight-semibold">{{ page.title }}</h1>
         {% assign words = content | number_of_words %} 
         {% assign mins = words | divided_by:180 %}
-        {%- include function.getCategory.html name=page.categories.first -%}
+        {%- include functions/getCategory name=page.categories.first -%}
         <p class="subtitle is-6">
           <a href="/{{ page.date | date: "%Y" }}/">{{ page.date | date: "%b %d, %Y" }}</a>
           {% if category.size %}in <a href="{{ site.jekyll-archives.permalinks.category | replace: ":name", category.name }}">{{ category.caption }}</a>{%endif%} 

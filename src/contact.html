@@ -7,7 +7,7 @@ title: contact
     <div class="column is-6 is-offset-3">
       <h1 class="title is-2">Contact</h1>
       {% if jekyll.environment == "netlify" and site.contact.page.service == "auto" %}
-        <form name="contact"{% if site.contact.page.thanks %} action="{{ site.contact.page.thanks }}"{% endif %} method="POST"{% if site.contact.page.honeypot %} data-netlify-recaptcha="true"{% endif %}{% if site.contact.page.honeypot %} netlify-honeypot="lastname"{% endif %} netlify>
+        <form method="POST" name="contact"{% if site.contact.page.thanks %} action="{{ site.contact.page.thanks }}"{% endif %}{% if site.contact.page.recaptcha %} data-netlify-recaptcha="true"{% endif %}{% if site.contact.page.honeypot %} netlify-honeypot="lastname"{% endif %} netlify>
       {% else %}
         <form name="contact" {% unless site.contact.email-plain %} class="has-secret-action"{% endunless %} action="https://formspree.io/{% if site.contact.email-plain %}{{ site.contact.email-plain }}{% endif %}" method="POST">
           {% if site.contact.page.thanks %}<input type="hidden" name="_next" value="{{ site.url | append: site.contact.page.thanks }}" />{% endif %}

@@ -70,5 +70,6 @@ node_modules
 
 ### Jekyll ###
 www/
+build
 .jekyll-cache
 src/_assets/vendor

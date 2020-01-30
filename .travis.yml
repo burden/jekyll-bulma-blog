@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.5.3
+  - 2.6.5
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
@@ -9,16 +9,5 @@ addons:
   apt:
     packages:
     - libcurl4-openssl-dev # https://github.com/typhoeus/typhoeus/issues/568
-before_script:
-  - yarn install
 script:
-  - bundle exec jekyll build
   - bundle exec htmlproofer ./www --url-ignore "/burden.cc/"
-deploy:
-  provider: pages # https://docs.travis-ci.com/user/deployment/pages/
-  skip-cleanup: true
-  github-token: $GITHUB_API  # Set in the settings page of your repository, as a secure variable
-  keep-history: true
-  local-dir: ./www
-  on:
-    branch: master

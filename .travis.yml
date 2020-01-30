@@ -9,5 +9,8 @@ addons:
   apt:
     packages:
     - libcurl4-openssl-dev # https://github.com/typhoeus/typhoeus/issues/568
+before_script:
+  - yarn install
 script:
-  - bundle exec htmlproofer ./www --url-ignore "/burden.cc/"
+  - bundle exec jekyll build
+  - bundle exec htmlproofer ./build --url-ignore "/burden.cc/"

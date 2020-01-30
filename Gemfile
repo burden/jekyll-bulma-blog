@@ -3,7 +3,7 @@ ruby RUBY_VERSION
 gem "jekyll", "~> 3.8.6"
 gem "rake"
 gem "html-proofer"
-gem "sprockets", "~> 3.7"
+gem "rack", ">= 2.0.8"
 
 group :jekyll_plugins do
   gem "jekyll-assets"

@@ -48,7 +48,7 @@ plugins:
   - jekyll-sitemap
 
 source: src
-destination: www
+destination: build
 markdown: kramdown
     
 compress_html:
